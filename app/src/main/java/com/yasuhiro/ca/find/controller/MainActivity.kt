@@ -24,8 +24,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        findViewById<TextView>(R.id.loginButton).setOnClickListener(this)
-
         etEmail = findViewById(R.id.etEmail) as EditText?
         etPassword = findViewById(R.id.etPass) as EditText?
 
@@ -43,20 +41,25 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 Log.d(TAG, "Currently signed out")
             }
         }
+
+        findViewById<TextView>(R.id.loginButton).setOnClickListener(this)
     }
 
+    // add Auth function
     override fun onStart() {
         super.onStart()
         // TODO: add the AuthListener
         mAuth!!.addAuthStateListener(mAuthListener!!)
     }
 
+    // click button function
     override fun onClick(v: View) {
         when (v.id) {
             R.id.loginButton -> signUserIn()
         }
     }
 
+    // remove Auth function
     public override fun onStop() {
         super.onStop()
         // TODO: Remove the AuthListener
@@ -65,6 +68,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    // check for email and password function
     private fun checkFormFields(): Boolean {
         val email: String
         val password: String
@@ -86,7 +90,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         return true
     }
 
-    // siginIn check method
+    // siginIn check function
     private fun signUserIn() {
         if (!checkFormFields())
             return
@@ -112,7 +116,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     companion object {
         private val TAG = "EmailPassword"
-        private val Button = "OK"
     }
 
 }
