@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_login_img"
-    tools:context="com.yasuhiro.ca.find.MainActivity">
+    tools:context="com.yasuhiro.ca.find.controller.MainActivity">
 
     <LinearLayout
         android:id="@+id/contentLogin"
@@ -17,7 +17,7 @@
             android:id="@+id/textBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:orientation="vertical">
 
             <TextView
@@ -26,8 +26,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Welcome to"
-                android:textColor="#FFFFFF"
-                android:textSize="30sp"
+                android:textColor="@color/commontextcolor"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -37,7 +37,7 @@
                 android:gravity="center"
                 android:text="Find"
                 android:textColor="#E01B1B"
-                android:textSize="100sp"
+                android:textSize="70sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -46,8 +46,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="texttexttexttexttexttexttexttexttext"
-                android:textColor="#FFFFFF"
-                android:textSize="24sp"
+                android:textColor="@color/commontextcolor"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -56,7 +56,7 @@
             android:id="@+id/editTextBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:orientation="vertical">
 
             <EditText
@@ -70,11 +70,11 @@
                 android:ems="10"
                 android:hint="Email"
                 android:inputType="textPersonName"
-                android:paddingBottom="20dp"
+                android:paddingBottom="10dp"
                 android:paddingLeft="10dp"
-                android:paddingTop="20dp"
-                android:textColor="@android:color/background_dark"
-                android:textColorHint="@android:color/background_dark" />
+                android:paddingTop="10dp"
+                android:textColor="@color/detailtextcolor"
+                android:textColorHint="@color/detailtextcolor" />
 
             <EditText
                 android:id="@+id/etPass"
@@ -88,18 +88,19 @@
                 android:ems="10"
                 android:hint="Password"
                 android:inputType="textPersonName"
-                android:paddingBottom="20dp"
+                android:paddingBottom="10dp"
                 android:paddingLeft="10dp"
-                android:paddingTop="20dp"
-                android:textColor="@android:color/black"
-                android:textColorHint="@android:color/background_dark" />
+                android:paddingTop="10dp"
+                android:textColor="@color/detailtextcolor"
+                android:textColorHint="@color/detailtextcolor" />
 
             <TextView
                 android:id="@+id/forgetText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="20dp"
                 android:gravity="center"
+                android:textColor="@color/commontextcolor"
                 android:text="Forget Your Password ?" />
 
         </LinearLayout>
@@ -108,7 +109,7 @@
             android:id="@+id/signBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="20dp"
             android:orientation="vertical">
 
 
@@ -120,8 +121,8 @@
                 android:layout_marginRight="20dp"
                 android:background="@drawable/button_bg_rounded_corners_red"
                 android:gravity="center"
-                android:paddingBottom="20dp"
-                android:paddingTop="20dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
                 android:text="LOGIN" />
 
             <TextView
@@ -133,10 +134,10 @@
                 android:background="@drawable/button_bg_rounded_corners_white"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:paddingBottom="20dp"
-                android:paddingTop="20dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
                 android:text="REGISTER"
-                android:textColor="#666666" />
+                android:textColor="@color/detailtextcolor" />
 
         </LinearLayout>
 
@@ -158,7 +159,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Or"
-                    android:textSize="24sp" />
+                    android:textColor="@color/commontextcolor"
+                    android:textSize="20sp" />
             </LinearLayout>
 
         </LinearLayout>
@@ -178,19 +180,21 @@
                 <ImageButton
                     android:id="@+id/facebookButton"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="20dp"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
                     android:background="@android:color/transparent"
+                    android:paddingRight="5dp"
+                    android:scaleType="fitCenter"
                     app:srcCompat="@drawable/ic_facebook" />
 
                 <ImageButton
                     android:id="@+id/twitterButton"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="20dp"
+                    android:layout_height="50dp"
+                    android:paddingLeft="5dp"
                     android:layout_weight="1"
                     android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
                     app:srcCompat="@drawable/ic_twitter" />
             </LinearLayout>
         </LinearLayout>
