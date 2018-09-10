@@ -17,7 +17,7 @@
             android:id="@+id/textBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="50dp"
             android:orientation="vertical">
 
             <TextView
@@ -26,7 +26,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Welcome to"
-                android:textSize="30dp"
+                android:textColor="#FFFFFF"
+                android:textSize="30sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -36,7 +37,7 @@
                 android:gravity="center"
                 android:text="Find"
                 android:textColor="#E01B1B"
-                android:textSize="100dp"
+                android:textSize="100sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -45,7 +46,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="texttexttexttexttexttexttexttexttext"
-                android:textSize="24dp"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -153,12 +155,10 @@
                     android:id="@+id/or"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:textSize="24dp"
-                    android:text="Or" />
+                    android:text="Or"
+                    android:textSize="24sp" />
             </LinearLayout>
 
         </LinearLayout>
@@ -167,19 +167,19 @@
             android:id="@+id/snsLoginBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="50dp"
-                android:paddingRight="50dp">
+                android:orientation="horizontal">
 
                 <ImageButton
                     android:id="@+id/facebookButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingRight="20dp"
                     android:layout_weight="1"
                     android:background="@android:color/transparent"
                     app:srcCompat="@drawable/ic_facebook" />
@@ -188,6 +188,7 @@
                     android:id="@+id/twitterButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
                     android:layout_weight="1"
                     android:background="@android:color/transparent"
                     app:srcCompat="@drawable/ic_twitter" />
