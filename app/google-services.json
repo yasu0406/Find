@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "66557492736",
+    "firebase_url": "https://find-ece1c.firebaseio.com",
+    "project_id": "find-ece1c",
+    "storage_bucket": "find-ece1c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:66557492736:android:efd66c0f0941a7c2",
+        "android_client_info": {
+          "package_name": "com.yasuhiro.ca.find"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "66557492736-a0b1tkuirp4br2fem46q1uc343b3ajal.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCpnpR4wVUHP9UcmSMPW6GDUS7D44aTHk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
