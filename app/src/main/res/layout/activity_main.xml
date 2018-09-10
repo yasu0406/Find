@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Welcome to"
-                android:textColor="@color/commontextcolor"
+                android:textColor="@color/colorAccent"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Find"
-                android:textColor="#E01B1B"
+                android:textColor="@color/colorPrimary"
                 android:textSize="70sp"
                 android:textStyle="bold" />
 
@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="texttexttexttexttexttexttexttexttext"
-                android:textColor="@color/commontextcolor"
+                android:textColor="@color/colorAccent"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -73,8 +73,8 @@
                 android:paddingBottom="10dp"
                 android:paddingLeft="10dp"
                 android:paddingTop="10dp"
-                android:textColor="@color/detailtextcolor"
-                android:textColorHint="@color/detailtextcolor" />
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorHint="@color/colorPrimaryDark" />
 
             <EditText
                 android:id="@+id/etPass"
@@ -91,8 +91,8 @@
                 android:paddingBottom="10dp"
                 android:paddingLeft="10dp"
                 android:paddingTop="10dp"
-                android:textColor="@color/detailtextcolor"
-                android:textColorHint="@color/detailtextcolor" />
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorHint="@color/colorPrimaryDark" />
 
             <TextView
                 android:id="@+id/forgetText"
@@ -100,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:textColor="@color/commontextcolor"
+                android:textColor="@color/colorAccent"
                 android:text="Forget Your Password ?" />
 
         </LinearLayout>
@@ -137,7 +137,7 @@
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
                 android:text="REGISTER"
-                android:textColor="@color/detailtextcolor" />
+                android:textColor="@color/colorPrimaryDark" />
 
         </LinearLayout>
 
@@ -159,7 +159,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Or"
-                    android:textColor="@color/commontextcolor"
+                    android:textColor="@color/colorAccent"
                     android:textSize="20sp" />
             </LinearLayout>
 
