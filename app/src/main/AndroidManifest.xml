@@ -21,8 +21,11 @@
         <activity
             android:name=".controller.PlaceListActivity"
             android:label="@string/title_activity_place_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".controller.SignUpActivity"
             android:theme="@style/AppTheme.NoActionBar"
-            ></activity>
+            />
     </application>
 
 </manifest>

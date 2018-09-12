@@ -28,7 +28,6 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/userName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -38,7 +37,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/userNameEdit"
+                android:id="@+id/inputUserName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
@@ -48,7 +47,6 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -58,7 +56,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/etEmail"
+                android:id="@+id/inputEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
@@ -68,25 +66,24 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/pass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:text="Password"
                 android:textColor="@color/colorAccent"
-                android:textStyle="bold"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/etPass"
+                android:id="@+id/inputPass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
                 android:hint="Username"
+                android:inputType="textPassword"
                 android:textColor="@color/colorAccent"
                 android:textColorHint="#cccccc"
-                android:textSize="14sp"
-                android:inputType="textPassword"/>
+                android:textSize="14sp" />
 
             <Button
                 android:id="@+id/signUpButton"
