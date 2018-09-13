@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".controller.RegistPlaceActivity"
+    tools:showIn="@layout/activity_regist_place">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="RESTAURANT NAME"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/inputRestaurantName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/edit_text_border"
+            android:hint="Find Restaurant"
+            android:inputType="text"
+            android:paddingBottom="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textColorHint="@color/colorPrimaryDark"
+            android:textColorLink="@color/colorPrimary"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="DISCRIPTION"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/inputDiscription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/edit_text_border"
+            android:hint="This restaurant is..."
+            android:inputType="text"
+            android:paddingBottom="10dp"
+            android:textColor="@color/colorAccent"
+            android:textColorHint="@color/colorPrimaryDark"
+            android:textColorLink="@color/colorPrimary"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="ADDRESS"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/inputAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/edit_text_border"
+            android:hint="000 W Granvile St, Vancouver "
+            android:inputType="text"
+            android:paddingBottom="10dp"
+            android:textColor="@color/colorAccent"
+            android:textColorHint="@color/colorPrimaryDark"
+            android:textColorLink="@color/colorPrimary"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:orientation="horizontal">
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" />
+
+            <Button
+                android:id="@+id/imgButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_bg_rounded_corners_red"
+                android:text="Image1"
+                android:textColor="@color/colorAccent"
+                tools:layout_editor_absoluteX="247dp" />
+
+            <Button
+                android:id="@+id/imgButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_bg_rounded_corners_red"
+                android:text="Image2"
+                android:textColor="@color/colorAccent"
+                tools:layout_editor_absoluteX="301dp" />
+
+            <Button
+                android:id="@+id/imgButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_bg_rounded_corners_red"
+                android:text="Image3"
+                android:textColor="@color/colorAccent"
+                tools:layout_editor_absoluteX="281dp" />
+
+            <Button
+                android:id="@+id/imgButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_bg_rounded_corners_red"
+                android:text="Image4"
+                android:textColor="@color/colorAccent"
+                tools:layout_editor_absoluteX="267dp" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/signUpButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_bg_rounded_corners_red"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:text="SIGNUP"
+            android:textColor="@color/colorAccent" />
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
