@@ -20,18 +20,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="RESTAURANT NAME"
+            android:text="PLACE NAME"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="14sp"
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/inputRestaurantName"
+            android:id="@+id/inputPlaceName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
             android:background="@drawable/edit_text_border"
-            android:hint="Find Restaurant"
+            android:hint="Find Place"
             android:inputType="text"
             android:paddingBottom="10dp"
             android:textColor="@color/colorPrimaryDark"
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
             android:background="@drawable/edit_text_border"
-            android:hint="This restaurant is..."
+            android:hint="This @string/title_activity_place_list is..."
             android:inputType="text"
             android:paddingBottom="10dp"
             android:textColor="@color/colorAccent"
@@ -144,13 +144,13 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/signUpButton"
+            android:id="@+id/registButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_bg_rounded_corners_red"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:text="SIGNUP"
+            android:text="REGIST"
             android:textColor="@color/colorAccent" />
 
     </LinearLayout>
