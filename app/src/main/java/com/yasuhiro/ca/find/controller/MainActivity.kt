@@ -18,6 +18,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private var etEmail: EditText? = null
     private var etPassword: EditText? = null
+    private var email: String? = null
+    private var password: String? = null
+    private var TAG = "EmailPassword"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +33,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         // Firebase instance
         mAuth = FirebaseAuth.getInstance()
 
-        // TODO: Attach a new AuthListener to detect sign in and out
+        // Attach a new AuthListener to detect sign in and out
         mAuthListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
             val user = firebaseAuth.currentUser
             if (user != null) {
@@ -43,26 +46,29 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         findViewById<TextView>(R.id.loginButton).setOnClickListener(this)
+        findViewById<TextView>(R.id.registerButton).setOnClickListener(this)
     }
 
-    // add Auth function
+    // Add Auth function
     override fun onStart() {
         super.onStart()
         // TODO: add the AuthListener
         mAuth!!.addAuthStateListener(mAuthListener!!)
     }
 
-    // click button function
+    // Click button function
     override fun onClick(v: View) {
         when (v.id) {
             R.id.loginButton -> signUserIn()
+
+            R.id.registerButton -> siginUp()
         }
     }
 
     // remove Auth function
     public override fun onStop() {
         super.onStop()
-        // TODO: Remove the AuthListener
+        // Remove the AuthListener
         if (mAuthListener != null) {
             mAuth!!.removeAuthStateListener(mAuthListener!!)
         }
@@ -70,18 +76,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     // check for email and password function
     private fun checkFormFields(): Boolean {
-        val email: String
-        val password: String
-
         email = etEmail!!.text.toString()
         password = etPassword!!.text.toString()
 
-        if(email.isEmpty()) {
+        if(email!!.isEmpty()) {
             etEmail!!.error = "Email Required"
 
             return false
         }
-        if(password.isEmpty()) {
+        if(password!!.isEmpty()) {
             etPassword!!.error = "Password Required"
 
             return false
@@ -95,11 +98,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         if (!checkFormFields())
             return
 
-        val email = etEmail!!.text.toString()
-        val password = etPassword!!.text.toString()
+        email = etEmail!!.text.toString()
+        password = etPassword!!.text.toString()
 
-        // TODO: sign the user in with email and password credentials
-        mAuth!!.signInWithEmailAndPassword(email, password)
+        // Sign the user in with email and password credentials
+        mAuth!!.signInWithEmailAndPassword(email!!, password!!)
                 .addOnCompleteListener(this
                 ) { task ->
                     if (task.isSuccessful) {
@@ -113,9 +116,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 }
     }
 
-
-    companion object {
-        private val TAG = "EmailPassword"
+    // move to siginUp
+    private fun siginUp() {
+        val intent = Intent(this, SignUpActivity::class.java)
+        startActivity(intent)
     }
-
 }
