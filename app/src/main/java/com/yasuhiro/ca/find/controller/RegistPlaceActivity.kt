@@ -17,14 +17,12 @@ import com.yasuhiro.ca.find.entity.const.Companion.PlacesPath
 
 class RegistPlaceActivity : AppCompatActivity(), View.OnClickListener {
 
-    private var uid: String? = null
-    private var userName: String? = null
     private var inputPlaceName: EditText? = null
     private var inputDiscription: EditText? = null
     private var inputAddress: EditText? = null
     private var image1: Byte? = null
     private var registButton: Button? = null
-    private var retunButtom: TextView? = null
+    private var retunButton: TextView? = null
 
     private var mAuth: FirebaseAuth? = null
     private var mDatabase: FirebaseDatabase? = null
@@ -35,7 +33,7 @@ class RegistPlaceActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_regist_place)
         registButton = findViewById(R.id.registPlaceButton) as Button
-        retunButtom = findViewById<View>(R.id.backButton) as TextView
+        retunButton = findViewById<View>(R.id.backButton) as TextView
 
         regist()
 
@@ -50,11 +48,8 @@ class RegistPlaceActivity : AppCompatActivity(), View.OnClickListener {
         mDatabase = FirebaseDatabase.getInstance()
         mDatabaseReference = mDatabase!!.reference.child(PlacesPath)
 
-//        mDatabaseReference!!.push().addListenerForSingleValueEvent(:ValueEventListener {
-//
-//        })
-
         registButton!!.setOnClickListener(this)
+        retunButton!!.setOnClickListener(this)
 
     }
 
@@ -63,23 +58,19 @@ class RegistPlaceActivity : AppCompatActivity(), View.OnClickListener {
         var discription = inputDiscription!!.text.toString()
         var address = inputAddress!!.text.toString()
 
-        if(!TextUtils.isEmpty(placeName) && !TextUtils.isEmpty(discription) && !TextUtils.isEmpty(address)) {
+        if((!TextUtils.isEmpty(placeName) && !TextUtils.isEmpty(discription) && !TextUtils.isEmpty(address))) {
 
             val userId = mAuth!!.currentUser!!.uid
-
-            val key = mDatabaseReference!!.push().key.toString()
-            val currentPlaceDb = mDatabaseReference!!.child(key)
-            currentPlaceDb!!.setValue(key)
-            currentPlaceDb!!.child("uid").setValue(userId)
-            currentPlaceDb!!.child("placeName").setValue(placeName)
-            currentPlaceDb!!.child("discription").setValue(discription)
-            currentPlaceDb!!.child("address").setValue(address)
-
+            var data = mutableMapOf<String,Any>()
+                data!!.put("uid", userId)
+                data!!.put("placeName", placeName)
+                data!!.put("discription", discription)
+                data!!.put("address", address)
+                mDatabaseReference!!.push().setValue(data)
             updateUserInfoAndUI()
         } else {
             Toast.makeText(this@RegistPlaceActivity, "RegistPlace failed.", Toast.LENGTH_SHORT).show()
         }
-
     }
 
     // updateUserInfoAndUI function
