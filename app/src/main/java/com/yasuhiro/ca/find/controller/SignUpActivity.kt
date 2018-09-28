@@ -80,6 +80,7 @@ class SignUpActivity : AppCompatActivity() {
 
                     val currentUserDb = mDatabaseReference!!.child(userId)
                     currentUserDb.child("userName").setValue(userName)
+                    currentUserDb.child("email").setValue(email)
                     currentUserDb.child("firstName").setValue("")
                     currentUserDb.child("lastName").setValue("")
 
