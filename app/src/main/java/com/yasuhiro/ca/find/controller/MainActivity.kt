@@ -13,13 +13,17 @@ import com.yasuhiro.ca.find.R
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
+    // variable of Firebase
     private var mAuth: FirebaseAuth? = null
     private var mAuthListener: FirebaseAuth.AuthStateListener? = null
 
+    // variables of widget
     private var etEmail: EditText? = null
     private var etPassword: EditText? = null
     private var email: String? = null
     private var password: String? = null
+
+    // variable of tag's EmailPassword
     private var TAG = "EmailPassword"
 
 
@@ -27,6 +31,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // call EditText
         etEmail = findViewById(R.id.etEmail) as EditText?
         etPassword = findViewById(R.id.etPass) as EditText?
 
@@ -45,6 +50,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
 
+        // setOnClickListener for Login and regist
         findViewById<TextView>(R.id.loginButton).setOnClickListener(this)
         findViewById<TextView>(R.id.registerButton).setOnClickListener(this)
     }
@@ -52,7 +58,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     // Add Auth function
     override fun onStart() {
         super.onStart()
-        // TODO: add the AuthListener
         mAuth!!.addAuthStateListener(mAuthListener!!)
     }
 
@@ -65,7 +70,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    // remove Auth function
+    // Remove Auth function
     public override fun onStop() {
         super.onStop()
         // Remove the AuthListener
@@ -74,7 +79,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    // check for email and password function
+    // Check for email and password function
     private fun checkFormFields(): Boolean {
         email = etEmail!!.text.toString()
         password = etPassword!!.text.toString()
@@ -93,7 +98,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         return true
     }
 
-    // siginIn check function
+    // SiginIn check function
     private fun signUserIn() {
         if (!checkFormFields())
             return
@@ -116,7 +121,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 }
     }
 
-    // move to siginUp
+    // Move to siginUp
     private fun siginUp() {
         val intent = Intent(this, SignUpActivity::class.java)
         startActivity(intent)
