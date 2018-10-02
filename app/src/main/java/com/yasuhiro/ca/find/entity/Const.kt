@@ -1,7 +1,5 @@
 package com.yasuhiro.ca.find.entity
 
-import java.io.Serializable
-
 class Const {
     companion object {
         const val UsersPath: String = "Users"
