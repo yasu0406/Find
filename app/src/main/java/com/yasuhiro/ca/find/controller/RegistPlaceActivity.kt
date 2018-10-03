@@ -6,21 +6,25 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.yasuhiro.ca.find.R
-import com.yasuhiro.ca.find.entity.const.Companion.PlacesPath
+import com.yasuhiro.ca.find.entity.Const.Companion.PLACE_DBPATH
 
+/*
+ *
+ * ClassName:RegistPlaceActivity
+ * Date:2018/09/13
+ * Create by: Yasuhiro Katayama
+ *
+ */
 class RegistPlaceActivity : AppCompatActivity(), View.OnClickListener {
 
     private var inputPlaceName: EditText? = null
     private var inputDiscription: EditText? = null
     private var inputAddress: EditText? = null
-    private var image1: Byte? = null
+    private var image: ImageView? = null
     private var registButton: Button? = null
     private var retunButton: TextView? = null
 
@@ -46,13 +50,14 @@ class RegistPlaceActivity : AppCompatActivity(), View.OnClickListener {
 
         mAuth = FirebaseAuth.getInstance()
         mDatabase = FirebaseDatabase.getInstance()
-        mDatabaseReference = mDatabase!!.reference.child(PlacesPath)
+        mDatabaseReference = mDatabase!!.reference.child(PLACE_DBPATH)
 
         registButton!!.setOnClickListener(this)
         retunButton!!.setOnClickListener(this)
 
     }
 
+    //
     private fun createPlaces() {
         var placeName = inputPlaceName!!.text.toString()
         var discription = inputDiscription!!.text.toString()
