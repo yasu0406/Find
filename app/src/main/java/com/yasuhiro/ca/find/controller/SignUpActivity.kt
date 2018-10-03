@@ -14,9 +14,15 @@ import com.google.firebase.auth.FirebaseAuth
 import com.yasuhiro.ca.find.R
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.yasuhiro.ca.find.entity.const.Companion.UsersPath
+import com.yasuhiro.ca.find.entity.Const.Companion.USER_DBPATH
 
-
+/*
+ *
+ * ClassName:PlaceListActivity
+ * Date:2018/09/10
+ * Create by: Yasuhiro Katayama
+ *
+ */
 class SignUpActivity : AppCompatActivity() {
     private var mAuth: FirebaseAuth? = null
     private var mDatabase: FirebaseDatabase? = null
@@ -36,7 +42,7 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
-        // signUp
+        // call signUp
         signUp()
     }
 
@@ -51,7 +57,7 @@ class SignUpActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
 
         mDatabase = FirebaseDatabase.getInstance()
-        mDatabaseReference = mDatabase!!.reference.child(UsersPath)
+        mDatabaseReference = mDatabase!!.reference.child(USER_DBPATH)
 
         signUpButton!!.setOnClickListener{
             createAccount()
