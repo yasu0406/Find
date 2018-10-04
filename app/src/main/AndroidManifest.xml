@@ -24,8 +24,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".controller.SignUpActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".controller.RegistPlaceActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
