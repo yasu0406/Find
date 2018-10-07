@@ -11,9 +11,15 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.yasuhiro.ca.find.R
 
-
+/*
+ *
+ * ClassName:MainActivity
+ * Date:2018/09/10
+ * Create by: Yasuhiro Katayama
+ *
+ */
 class MainActivity : AppCompatActivity(), View.OnClickListener {
-    // variable of Firebase
+    // variables of Firebase
     private var mAuth: FirebaseAuth? = null
     private var mAuthListener: FirebaseAuth.AuthStateListener? = null
 
