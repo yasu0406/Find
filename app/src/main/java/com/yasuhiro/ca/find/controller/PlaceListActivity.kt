@@ -33,6 +33,7 @@ class PlaceListActivity : AppCompatActivity() {
     private var placeName: String? = null
     private var discription: String? = null
     private var address: String? = null
+    private var imageUrl: String? = null
     private var image: String? = null
     private var placeMap: MutableMap<String, Any>? = null
 
@@ -60,15 +61,16 @@ class PlaceListActivity : AppCompatActivity() {
         // set placeAddapter for mListView
         mListView!!.setAdapter(placeAddapter)
         // call placeList fun
-        placeList()
+        showPlaceList()
 
     }
 
     /*
-    *
-    *
-    * */
-    private fun placeList() {
+     *
+     *
+     *
+     */
+    private fun showPlaceList() {
         var mChildEventListener =
         object : ChildEventListener {
             override fun onChildAdded(dataSnapshot: DataSnapshot, p1: String?) {
@@ -77,9 +79,11 @@ class PlaceListActivity : AppCompatActivity() {
                 placeName = placeMap!!.get("placeName") as String
                 discription = placeMap!!.get("discription") as String
                 address = placeMap!!.get("address") as String
+                imageUrl = placeMap!!.get("imageUrl") as String
 
 
-                var place = Place(placeName, discription, address)
+
+                var place = Place(placeName, discription, address, imageUrl)
                 listPlaceArrayList!!.add(place)
                 placeAddapter!!.notifyDataSetChanged()
             }
