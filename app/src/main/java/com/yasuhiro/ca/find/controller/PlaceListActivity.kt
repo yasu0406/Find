@@ -63,6 +63,9 @@ class PlaceListActivity : AppCompatActivity() {
         // call placeList fun
         showPlaceList()
 
+        // call mListViewClick fun
+        mListViewClick()
+
     }
 
     /*
@@ -80,8 +83,6 @@ class PlaceListActivity : AppCompatActivity() {
                 discription = placeMap!!.get("discription") as String
                 address = placeMap!!.get("address") as String
                 imageUrl = placeMap!!.get("imageUrl") as String
-
-
 
                 var place = Place(placeName, discription, address, imageUrl)
                 listPlaceArrayList!!.add(place)
@@ -107,6 +108,24 @@ class PlaceListActivity : AppCompatActivity() {
 
         mDatabaseReference!!.addChildEventListener(mChildEventListener)
 
+    }
+
+
+    /*
+     *
+     *
+     *
+     */
+    private fun mListViewClick() {
+        mListView!!.setOnItemClickListener { parent, view, position, id ->
+            var intent = Intent(view.context, PlaceDetailActivity::class.java)
+            var place = this.listPlaceArrayList!![position]
+            intent.putExtra("placeName", place.placeName)
+            intent.putExtra("discription", place.discription)
+            intent.putExtra("address", place.address)
+            intent.putExtra("imageUrl", place.imageUrl)
+            startActivity(intent)
+        }
     }
 
 }
