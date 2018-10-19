@@ -28,6 +28,9 @@
         <activity
             android:name=".controller.RegistPlaceActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".controller.PlaceDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
