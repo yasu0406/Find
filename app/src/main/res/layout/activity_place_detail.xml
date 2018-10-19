@@ -1,37 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".controller.PlaceDetailActivity">
 
-    <LinearLayout
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-        <ImageView
-            android:id="@+id/placeImage"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
-            />
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
-            />
+            android:background="@color/colorAccent"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
 
-        <TextView
-            android:id="@+id/discription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
-            />
+            <TextView
+                android:id="@+id/backButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_backspace_black_24dp"
+                android:textColor="@color/colorPrimary" />
 
-    </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:text="@string/title_activity_place_list"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_place_detail" />
+
+</android.support.design.widget.CoordinatorLayout>
