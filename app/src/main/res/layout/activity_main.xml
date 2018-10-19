@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Welcome to"
-                android:textColor="@color/colorAccent"
+                android:textColor="@android:color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="texttexttexttexttexttexttexttexttext"
-                android:textColor="@color/colorAccent"
+                android:textColor="@android:color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -100,8 +100,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:textColor="@color/colorAccent"
-                android:text="Forget Your Password ?" />
+                android:text="Forget Your Password ?"
+                android:textColor="@android:color/white" />
 
         </LinearLayout>
 
@@ -159,7 +159,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Or"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@android:color/white"
                     android:textSize="20sp" />
             </LinearLayout>
 
