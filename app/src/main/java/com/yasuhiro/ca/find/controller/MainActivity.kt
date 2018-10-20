@@ -38,8 +38,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_main)
 
         // call EditText
-        etEmail = findViewById(R.id.etEmail) as EditText?
-        etPassword = findViewById(R.id.etPass) as EditText?
+        etEmail = findViewById(R.id.etEmail)
+        etPassword = findViewById(R.id.etPass)
 
         // Firebase instance
         mAuth = FirebaseAuth.getInstance()
