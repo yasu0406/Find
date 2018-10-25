@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/reviewList"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
@@ -13,7 +14,7 @@
             android:id="@+id/imageListView"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop" />
 
@@ -23,7 +24,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/placeName"
+                android:id="@+id/reviewTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -32,7 +33,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/discription"
+                android:id="@+id/reviewContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="texttexttexttexttexttexttext"
