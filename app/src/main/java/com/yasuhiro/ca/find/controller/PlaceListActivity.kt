@@ -9,8 +9,8 @@ import com.yasuhiro.ca.find.R
 import com.yasuhiro.ca.find.adapter.PlacesAdapter
 import com.yasuhiro.ca.find.entity.Const.Companion.PLACE_DBPATH
 import com.yasuhiro.ca.find.model.Place
-
 import kotlinx.android.synthetic.main.activity_place_list.*
+import kotlinx.android.synthetic.main.toolbar_humbarger.*
 
 
 /*
@@ -30,6 +30,7 @@ class PlaceListActivity : AppCompatActivity() {
 
     // variables of data
     private var uid: String? = null
+    private var placeId: String? = null
     private var placeName: String? = null
     private var discription: String? = null
     private var address: String? = null
@@ -49,7 +50,7 @@ class PlaceListActivity : AppCompatActivity() {
         // call FirebaseDatabase
         mDatabaseReference = FirebaseDatabase.getInstance().getReference(PLACE_DBPATH)
         // call listView
-        mListView = findViewById(R.id.listPlacesView) as ListView
+        mListView = findViewById(R.id.listPlacesView)
         // set ArrayList<Place>
         listPlaceArrayList = ArrayList<Place>()
         // set PlacesAdapter(this)
@@ -79,12 +80,13 @@ class PlaceListActivity : AppCompatActivity() {
             override fun onChildAdded(dataSnapshot: DataSnapshot, p1: String?) {
                 placeMap = dataSnapshot.getValue() as MutableMap<String, Any>
                 uid = placeMap!!.get("uid") as String
+                placeId = dataSnapshot.key as String
                 placeName = placeMap!!.get("placeName") as String
                 discription = placeMap!!.get("discription") as String
                 address = placeMap!!.get("address") as String
                 imageUrl = placeMap!!.get("imageUrl") as String
 
-                var place = Place(placeName, discription, address, imageUrl)
+                var place = Place(placeId, placeName, discription, address, imageUrl)
                 listPlaceArrayList!!.add(place)
                 placeAddapter!!.notifyDataSetChanged()
             }
@@ -120,10 +122,11 @@ class PlaceListActivity : AppCompatActivity() {
         mListView!!.setOnItemClickListener { parent, view, position, id ->
             var intent = Intent(view.context, PlaceDetailActivity::class.java)
             var place = this.listPlaceArrayList!![position]
+            intent.putExtra("placeId", place.placeId)
             intent.putExtra("placeName", place.placeName)
             intent.putExtra("discription", place.discription)
             intent.putExtra("address", place.address)
-            intent.putExtra("imageUrl", place.imageUrl)
+            intent.putExtra("placeImageUrl", place.imageUrl)
             startActivity(intent)
         }
     }
