@@ -60,6 +60,7 @@ class ReviewsFragment: Fragment() {
         mDatabaseReference = FirebaseDatabase.getInstance().getReference(PLACE_DBPATH)
         // call listView
         mListView = view.findViewById(R.id.reviewList)
+        mListView!!.setDivider(null)
         // set ArrayList<Review>
         listReviewArrayList = ArrayList<Review>()
         // set ReviewAdapter

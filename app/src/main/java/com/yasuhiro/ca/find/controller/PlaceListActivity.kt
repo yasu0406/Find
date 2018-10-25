@@ -35,7 +35,6 @@ class PlaceListActivity : AppCompatActivity() {
     private var discription: String? = null
     private var address: String? = null
     private var imageUrl: String? = null
-    private var image: String? = null
     private var placeMap: MutableMap<String, Any>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,6 +50,7 @@ class PlaceListActivity : AppCompatActivity() {
         mDatabaseReference = FirebaseDatabase.getInstance().getReference(PLACE_DBPATH)
         // call listView
         mListView = findViewById(R.id.listPlacesView)
+        mListView!!.setDivider(null)
         // set ArrayList<Place>
         listPlaceArrayList = ArrayList<Place>()
         // set PlacesAdapter(this)
@@ -92,7 +92,15 @@ class PlaceListActivity : AppCompatActivity() {
             }
 
             override fun onChildChanged(dataSnapshot: DataSnapshot, p1: String?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                placeMap = dataSnapshot.getValue() as MutableMap<String, Any>
+                uid = placeMap!!.get("uid") as String
+                placeId = dataSnapshot.key as String
+                placeName = placeMap!!.get("placeName") as String
+                discription = placeMap!!.get("discription") as String
+                address = placeMap!!.get("address") as String
+                imageUrl = placeMap!!.get("imageUrl") as String
+
+                placeAddapter!!.notifyDataSetChanged()
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
@@ -126,7 +134,7 @@ class PlaceListActivity : AppCompatActivity() {
             intent.putExtra("placeName", place.placeName)
             intent.putExtra("discription", place.discription)
             intent.putExtra("address", place.address)
-            intent.putExtra("placeImageUrl", place.imageUrl)
+            intent.putExtra("imageUrl", place.imageUrl)
             startActivity(intent)
         }
     }
