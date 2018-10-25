@@ -25,7 +25,11 @@ class PlaceDetailActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var viewpageradapter: ViewPagerAdapter
 
     private var retunButton: TextView? = null
+
+    // variables of data
     private var placeId: String? = null
+    private var placeName: String? = null
+    private var imageUrl: String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,17 +43,17 @@ class PlaceDetailActivity : AppCompatActivity(), View.OnClickListener {
 
         val extras = intent.extras
 
-        var placeName = extras.get("placeName")
-        var placeImageUrl = extras.get("placeImageUrl")
+        placeName = extras.getString("placeName")
+        imageUrl = extras.getString("imageUrl")
         placeId = extras.getString("placeId")
 
         placeImage = findViewById(R.id.placeImage)
         title =  findViewById(R.id.title)
 
         Glide.with(placeImage)
-                .load(placeImageUrl)
+                .load(imageUrl)
                 .into(placeImage)
-        title!!.setText(placeName as String)
+        title!!.setText(placeName)
 
         retunButton = findViewById(R.id.backButton)
         retunButton!!.setOnClickListener(this)
