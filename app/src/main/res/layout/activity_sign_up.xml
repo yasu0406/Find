@@ -94,10 +94,26 @@
                 android:textColorLink="@color/colorPrimary"
                 android:textSize="14sp" />
 
+            <ImageView
+                android:id="@+id/showImageView"
+                android:layout_width="fill_parent"
+                android:layout_height="100dp" />
+
+            <Button
+                android:id="@+id/choseButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_bg_rounded_corners_red"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:text="IMAGE"
+                android:textColor="@color/colorWhite" />
+
             <Button
                 android:id="@+id/signUpButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/button_bg_rounded_corners_red"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
