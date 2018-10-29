@@ -10,6 +10,7 @@ class Const {
         const val RESTAURANT_DBPATH: String = "Restaurants"
         const val HOUSE_DBPATH: String = "Houses"
         const val PLACE_STPATH: String = "PlacesImg"
+        const val USER_STPATH: String = "UsersImg"
         const val RESTAURANT_STPATH: String = "RestaurantsImg"
         const val HOUSE_STPATH: String = "HousesImg"
     }
