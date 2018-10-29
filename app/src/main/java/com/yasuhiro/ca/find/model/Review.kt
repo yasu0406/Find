@@ -1,4 +1,4 @@
 package com.yasuhiro.ca.find.model
 
 
-data class Review(val uid: String?, val placeId: String?, val reviewTitle: String?, val reviewContent: String?)
+data class Review(val uid: String?, val userName: String?, val reviewContent: String?, val userImageUrl: String?)
