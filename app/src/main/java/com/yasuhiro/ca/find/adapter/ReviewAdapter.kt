@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.yasuhiro.ca.find.R
 import com.yasuhiro.ca.find.model.Review
+import de.hdodenhof.circleimageview.CircleImageView
 
 /*
  * ClassName:ReviewAdapter
@@ -32,17 +34,16 @@ class ReviewAdapter(context: Context) : BaseAdapter() {
 
         val convertView = mlayoutInflater!!.inflate(R.layout.listview_review, viewGroup, false)
 
-
-        var reviewTitle = convertView!!.findViewById<TextView>(R.id.reviewTitle)
-        reviewTitle.setText(mListArray!!.get(position).reviewTitle)
+        var userName = convertView!!.findViewById<TextView>(R.id.userName)
+        userName.setText(mListArray!!.get(position).userName)
 
         var reviewContent = convertView!!.findViewById<TextView>(R.id.reviewContent)
         reviewContent.setText(mListArray!!.get(position).reviewContent)
 
-//        var imageList = convertView!!.findViewById<ImageView>(R.id.imageListView)
-//        Glide.with(imageList)
-//                .load(mListArray!!.get(position).imageUrl)
-//                .into(imageList)
+        var imageList = convertView!!.findViewById<CircleImageView>(R.id.reviewImageView)
+        Glide.with(imageList)
+                .load(mListArray!!.get(position).userImageUrl)
+                .into(imageList)
 
         return convertView
     }
