@@ -38,8 +38,8 @@ class PlacesAdapter(context: Context) : BaseAdapter() {
         var placeName = convertView!!.findViewById<TextView>(R.id.placeName)
         placeName.setText(mListArray!!.get(position).placeName)
 
-        var discription = convertView!!.findViewById<TextView>(R.id.discription)
-        discription.setText(mListArray!!.get(position).discription)
+        var address = convertView!!.findViewById<TextView>(R.id.address)
+        address.setText(mListArray!!.get(position).address)
 
         var imageList = convertView!!.findViewById<ImageView>(R.id.imageListView)
         Glide.with(imageList)
