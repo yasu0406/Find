@@ -5,12 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -26,17 +24,18 @@ class ReviewWriteActivity : AppCompatActivity(), View.OnClickListener {
     private var mDatabase: FirebaseDatabase? = null
     private var mDatabaseReference: DatabaseReference? = null
 
-    private var inputReviewTitle: EditText? = null
     private var inputReviewContent: EditText? = null
     private var returnButton: TextView? = null
     private var registButton: Button? = null
     private var userName: String? = null
-    private var reviewTitle: String? = null
     private var reviewContent: String? = null
     private var mProgressBar: ProgressDialog? = null
     private var placeId: String? = null
-
-    private val TAG = "CreateReviewWriteActivity"
+    private var placeName: String? = null
+    private var discription: String? = null
+    private var address: String? = null
+    private var imageUrl: String? = null
+    private var uImageUrl: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +43,13 @@ class ReviewWriteActivity : AppCompatActivity(), View.OnClickListener {
         setSupportActionBar(toolbar)
         val extras = intent.extras
 
-        placeId = extras.get("placeId") as String
+        placeId = extras.getString("placeId")
+        placeName = extras.getString("placeName")
+        discription = extras.getString("discription")
+        address = extras.getString("address")
+        imageUrl = extras.getString("imageUrl")
+        uImageUrl = extras.getString("uImageUrl")
+        userName = extras.getString("userName")
 
         returnButton = findViewById(R.id.backButton)
         returnButton!!.setOnClickListener(this)
@@ -55,7 +60,6 @@ class ReviewWriteActivity : AppCompatActivity(), View.OnClickListener {
 
     // signUp function
     private fun signUp() {
-        inputReviewTitle = findViewById(R.id.inputReviewTitle)
         inputReviewContent = findViewById(R.id.inputReviewContent)
         registButton = findViewById(R.id.registButton)
         mProgressBar = ProgressDialog(this)
@@ -70,14 +74,13 @@ class ReviewWriteActivity : AppCompatActivity(), View.OnClickListener {
 
     // createAccount function
     private fun createReview() {
-        reviewTitle = inputReviewTitle!!.text.toString()
         reviewContent = inputReviewContent!!.text.toString()
 
-        if (!TextUtils.isEmpty(reviewTitle) && !TextUtils.isEmpty(reviewContent)) {
+        if (!TextUtils.isEmpty(reviewContent)) {
             mProgressBar!!.setMessage("Registering User...")
             mProgressBar!!.show()
 
-            writeNewPlaceToDB(reviewTitle, reviewContent)
+            writeNewPlaceToDB(reviewContent)
 
         }
 
@@ -88,15 +91,23 @@ class ReviewWriteActivity : AppCompatActivity(), View.OnClickListener {
     private fun updateReview() {
         //start next activity
         val intent = Intent(this@ReviewWriteActivity, PlaceDetailActivity::class.java)
+        intent.putExtra("placeId", placeId)
+        intent.putExtra("placeName", placeName)
+        intent.putExtra("discription", discription)
+        intent.putExtra("address", address)
+        intent.putExtra("imageUrl", imageUrl)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
     }
 
-    private fun writeNewPlaceToDB(reviewTitle: String?, reviewContent: String?) {
+    // writeNewPlaceToDB function
+    private fun writeNewPlaceToDB(reviewContent: String?) {
         val userId = mAuth!!.currentUser!!.uid
         var data = mutableMapOf<String,Any>()
         data!!.put("uid", userId)
-        data!!.put("reviewTitle", reviewTitle!!)
+        data!!.put("userName", userName!!)
         data!!.put("reviewContent", reviewContent!!)
+        data!!.put("uImageUrl", uImageUrl!!)
         mDatabaseReference!!.child(REVIEW_DBPATH).push().setValue(data)
     }
 
@@ -105,6 +116,7 @@ class ReviewWriteActivity : AppCompatActivity(), View.OnClickListener {
         super.onBackPressed()
     }
 
+    // conCLick function
     override fun onClick(v: View) {
         when(v.id) {
 
