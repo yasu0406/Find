@@ -43,7 +43,6 @@ class ReviewsFragment: Fragment() {
     private var userName: String? = null
     private var reviewContent: String? = null
     private var reviesMap: MutableMap<String, Any>? = null
-    private var userMap: MutableMap<String, Any>? = null
     private var placeName: String? = null
     private var discription: String? = null
     private var address: String? = null
@@ -105,7 +104,6 @@ class ReviewsFragment: Fragment() {
     }
 
     private fun showReviews() {
-        var userId = mAuth!!.currentUser!!.uid
         var mChildEventListener =
                 object : ChildEventListener {
                     override fun onChildAdded(reviewSnapshot: DataSnapshot, p1: String?) {
@@ -137,18 +135,5 @@ class ReviewsFragment: Fragment() {
                     }
                 }
         mDatabaseReference!!.child(placeId!!).child(REVIEW_DBPATH).addChildEventListener(mChildEventListener)
-        var uChildEventListener =
-                object : ValueEventListener {
-                    override fun onDataChange(userDataSnapshot: DataSnapshot) {
-                        userMap = userDataSnapshot.getValue() as MutableMap<String, Any>
-                        userName = userMap!!.get("userName") as String
-                        uImageUrl = userMap!!.get("imageUrl") as String
-                    }
-
-                    override fun onCancelled(databaseError: DatabaseError) {
-                    }
-
-                }
-        uDatabaseReference!!.child(userId!!).addValueEventListener(uChildEventListener)
     }
 }
