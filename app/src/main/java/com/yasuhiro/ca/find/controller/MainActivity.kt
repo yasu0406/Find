@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private var password: String? = null
     private var cUserImageUrl: String? = null
     private var map: MutableMap<String, Any>? = null
-    private var cUserName: String? = null
+    private var loginUserName: String? = null
 
     // variable of tag's EmailPassword
     private var TAG = "EmailPassword"
@@ -130,7 +130,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         Log.d(TAG, "createUserWithEmail:success")
                         val intent = Intent(this, PlaceListActivity::class.java)
                         intent.putExtra("cUserImageUrl", cUserImageUrl)
-                        intent.putExtra("cUserName", cUserName)
+                        intent.putExtra("loginUserName", loginUserName)
                         startActivity(intent)
                     } else {
                         Toast.makeText(this, "Sign in failed", Toast.LENGTH_SHORT)
@@ -151,7 +151,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot) {
                         map = dataSnapshot.getValue() as MutableMap<String, Any>
                         cUserImageUrl = map!!.get("imageUrl") as String
-                        cUserName = map!!.get("userName") as String
+                        loginUserName = map!!.get("userName") as String
 
                     }
 
