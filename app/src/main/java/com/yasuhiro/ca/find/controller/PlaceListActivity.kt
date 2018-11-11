@@ -10,6 +10,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.EditText
 import android.widget.ListView
+import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.google.firebase.database.*
 import com.yasuhiro.ca.find.R
@@ -46,7 +47,7 @@ class PlaceListActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     private var imageUrl: String? = null
     private var loginUserName: String? = null
     private var cUserImageUrl: String? = null
-    private var cUserName: EditText? = null
+    private var cUserName: TextView? = null
     private var navImageView: CircleImageView? = null
     private var placeMap: MutableMap<String, Any>? = null
 
@@ -58,7 +59,7 @@ class PlaceListActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         val extras = intent.extras
 
         cUserImageUrl = extras.getString("cUserImageUrl")
-        loginUserName = extras.getString("cUserName")
+        loginUserName = extras.getString("loginUserName")
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbarNav, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -170,6 +171,8 @@ class PlaceListActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             intent.putExtra("discription", place.discription)
             intent.putExtra("address", place.address)
             intent.putExtra("imageUrl", place.imageUrl)
+            intent.putExtra("cUserImageUrl", cUserImageUrl)
+            intent.putExtra("loginUserName", loginUserName)
             startActivity(intent)
         }
     }
@@ -203,6 +206,8 @@ class PlaceListActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         when (item.itemId) {
             R.id.nav_places -> {
                 var intent = Intent(this,PlaceListActivity::class.java)
+                intent.putExtra("cUserImageUrl", cUserImageUrl)
+                intent.putExtra("loginUserName", loginUserName)
                 startActivity(intent)
             }
             R.id.nav_profile -> {
