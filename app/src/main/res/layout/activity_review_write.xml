@@ -13,9 +13,6 @@
 
         <include layout="@layout/toolbar_backbutton" />
 
-        <include
-            layout="@layout/dropshadow" />
-
         <include layout="@layout/content_review_write" />
 
     </LinearLayout>
