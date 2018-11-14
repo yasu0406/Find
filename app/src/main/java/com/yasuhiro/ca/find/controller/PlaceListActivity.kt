@@ -8,19 +8,22 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.EditText
 import android.widget.ListView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.yasuhiro.ca.find.R
 import com.yasuhiro.ca.find.adapter.PlacesAdapter
 import com.yasuhiro.ca.find.entity.Const.Companion.PLACE_DBPATH
+import com.yasuhiro.ca.find.entity.Const.Companion.USER_DBPATH
 import com.yasuhiro.ca.find.model.Place
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_place_list.*
 import kotlinx.android.synthetic.main.app_bar_place_list.*
 import kotlinx.android.synthetic.main.toolbar_humbarger.*
+
+
 
 
 /*
@@ -34,11 +37,13 @@ class PlaceListActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
     // variables of Firebase
     private var mDatabaseReference: DatabaseReference? = null
+    private var uDatabaseReference: DatabaseReference? = null
     private var mListView: ListView? = null
     private var listPlaceArrayList: ArrayList<Place>? = null
     private var placeAddapter: PlacesAdapter? = null
 
     // variables of data
+    private var userId: String? = null
     private var uid: String? = null
     private var placeId: String? = null
     private var placeName: String? = null
@@ -50,16 +55,12 @@ class PlaceListActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     private var cUserName: TextView? = null
     private var navImageView: CircleImageView? = null
     private var placeMap: MutableMap<String, Any>? = null
+    private var userMap: MutableMap<String, Any>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_place_list)
         setSupportActionBar(toolbarNav)
-
-        val extras = intent.extras
-
-        cUserImageUrl = extras.getString("cUserImageUrl")
-        loginUserName = extras.getString("loginUserName")
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbarNav, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -68,22 +69,12 @@ class PlaceListActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
         nav_view.setNavigationItemSelectedListener(this)
 
-        val headerView = nav_view.inflateHeaderView(R.layout.nav_header)
-        navImageView = headerView.findViewById(R.id.navImageView)
-        cUserName = headerView.findViewById(R.id.navUserName)
-        cUserName!!.setText(loginUserName)
-
-        Glide.with(navImageView)
-                .load(cUserImageUrl)
-                .into(navImageView)
-
-        fab.setOnClickListener { view ->
-            var intent = Intent(this,RegistPlaceActivity::class.java)
-            startActivity(intent)
-        }
-
         // call FirebaseDatabase
         mDatabaseReference = FirebaseDatabase.getInstance().getReference(PLACE_DBPATH)
+        uDatabaseReference = FirebaseDatabase.getInstance().getReference(USER_DBPATH)
+
+        getUser()
+
         // call listView
         mListView = findViewById(R.id.listPlacesView)
         mListView!!.setDivider(null)
@@ -103,6 +94,46 @@ class PlaceListActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         // call mListViewClick fun
         mListViewClick()
 
+        fab.setOnClickListener { view ->
+            var intent = Intent(this,RegistPlaceActivity::class.java)
+            startActivity(intent)
+        }
+
+    }
+
+
+    private fun getUser() {
+        // ログイン済みのユーザーを収録する
+        val user = FirebaseAuth.getInstance().currentUser
+        userId = user!!.uid
+        // ログインしていなければログイン画面に遷移させる
+        if (user == null) {
+            val intent = Intent(applicationContext, MainActivity::class.java)
+            startActivity(intent)
+        } else {
+            var uChildEventListener =
+                    object : ValueEventListener {
+                        override fun onDataChange(userDataSnapshot: DataSnapshot) {
+                            userMap = userDataSnapshot.getValue() as MutableMap<String, Any>
+                            loginUserName = userMap!!.get("userName") as String
+                            cUserImageUrl = userMap!!.get("imageUrl") as String
+                            val headerView = nav_view.inflateHeaderView(R.layout.nav_header)
+                            navImageView = headerView.findViewById(R.id.navImageView)
+                            cUserName = headerView.findViewById(R.id.navUserName)
+                            cUserName!!.setText(loginUserName)
+
+                            Glide.with(navImageView)
+                                    .load(cUserImageUrl)
+                                    .into(navImageView)
+                        }
+
+                        override fun onCancelled(userDataSnapshot: DatabaseError) {
+
+                        }
+
+                    }
+            uDatabaseReference!!.child(userId!!).addListenerForSingleValueEvent(uChildEventListener)
+        }
     }
 
     /*
@@ -171,8 +202,6 @@ class PlaceListActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             intent.putExtra("discription", place.discription)
             intent.putExtra("address", place.address)
             intent.putExtra("imageUrl", place.imageUrl)
-            intent.putExtra("cUserImageUrl", cUserImageUrl)
-            intent.putExtra("loginUserName", loginUserName)
             startActivity(intent)
         }
     }
