@@ -103,10 +103,10 @@ class PlaceListActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
 
     private fun getUser() {
-        // ログイン済みのユーザーを収録する
+        // get loginUser
         val user = FirebaseAuth.getInstance().currentUser
         userId = user!!.uid
-        // ログインしていなければログイン画面に遷移させる
+
         if (user == null) {
             val intent = Intent(applicationContext, MainActivity::class.java)
             startActivity(intent)
