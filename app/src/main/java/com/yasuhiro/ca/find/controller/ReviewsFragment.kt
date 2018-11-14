@@ -31,11 +31,9 @@ import com.google.firebase.database.DataSnapshot
 class ReviewsFragment: Fragment() {
     // variables of Firebase
     private var mDatabaseReference: DatabaseReference? = null
-    private var uDatabaseReference: DatabaseReference? = null
     private var mListView: ListView? = null
     private var listReviewArrayList: ArrayList<Review>? = null
     private var reviewAddapter: ReviewAdapter? = null
-    private var mAuth: FirebaseAuth? = null
 
     // variables
     private var uid: String? = null
@@ -69,8 +67,6 @@ class ReviewsFragment: Fragment() {
 
         // call FirebaseDatabase
         mDatabaseReference = FirebaseDatabase.getInstance().getReference(PLACE_DBPATH)
-        uDatabaseReference = FirebaseDatabase.getInstance().getReference(USER_DBPATH)
-        mAuth = FirebaseAuth.getInstance()
 
         // call listView
         mListView = view?.findViewById(R.id.reviewList)
