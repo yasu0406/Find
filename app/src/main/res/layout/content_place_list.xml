@@ -9,7 +9,7 @@
     android:paddingRight="20dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".controller.PlaceListActivity"
-    tools:showIn="@layout/activity_place_list">
+    tools:showIn="@layout/app_bar_place_list">
 
     <ListView
         android:id="@+id/listPlacesView"
