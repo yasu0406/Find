@@ -11,8 +11,11 @@ import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 import com.yasuhiro.ca.find.R
 import com.yasuhiro.ca.find.adapter.ViewPagerAdapter
+import com.yasuhiro.ca.find.entity.Const
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_place_list.*
 import kotlinx.android.synthetic.main.content_place_detail.*
@@ -28,11 +31,11 @@ import kotlinx.android.synthetic.main.toolbar_humbarger.*
  */
 class PlaceDetailActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    private var placeImage: ImageView? = null
-    private var title: TextView? = null
-    private lateinit var viewpageradapter: ViewPagerAdapter
+    // variables of Firebase
+    private var uDatabaseReference: DatabaseReference? = null
 
     // variables of data
+    private var userId: String? = null
     private var placeId: String? = null
     private var placeName: String? = null
     private var imageUrl: String? = null
@@ -40,6 +43,10 @@ class PlaceDetailActivity : AppCompatActivity(), NavigationView.OnNavigationItem
     private var cUserImageUrl: String? = null
     private var cUserName: TextView? = null
     private var navImageView: CircleImageView? = null
+    private var placeImage: ImageView? = null
+    private var title: TextView? = null
+    private lateinit var viewpageradapter: ViewPagerAdapter
+    private var userMap: MutableMap<String, Any>? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,30 +65,21 @@ class PlaceDetailActivity : AppCompatActivity(), NavigationView.OnNavigationItem
 
         this.viewPager.adapter = viewpageradapter
         this.tab_layout.setupWithViewPager(this.viewPager)
-        val headerView = nav_view.inflateHeaderView(R.layout.nav_header)
-        navImageView = headerView.findViewById(R.id.navImageView)
-
-        Glide.with(navImageView)
-                .load(cUserImageUrl)
-                .into(navImageView)
 
         val extras = intent.extras
 
         placeName = extras.getString("placeName")
         imageUrl = extras.getString("imageUrl")
         placeId = extras.getString("placeId")
-        cUserImageUrl = extras.getString("cUserImageUrl")
-        loginUserName = extras.getString("loginUserName")
 
+        // call FirebaseDatabase
+        uDatabaseReference = FirebaseDatabase.getInstance().getReference(Const.USER_DBPATH)
+
+
+        getUser()
 
         placeImage = findViewById(R.id.placeImage)
         title =  findViewById(R.id.title)
-        cUserName = headerView.findViewById(R.id.navUserName)
-        cUserName!!.setText(loginUserName)
-
-        Glide.with(navImageView)
-                .load(cUserImageUrl)
-                .into(navImageView)
 
         Glide.with(placeImage)
                 .load(imageUrl)
@@ -133,5 +131,39 @@ class PlaceDetailActivity : AppCompatActivity(), NavigationView.OnNavigationItem
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    private fun getUser() {
+        // get loginUser
+        val user = FirebaseAuth.getInstance().currentUser
+        userId = user!!.uid
+
+        if (user == null) {
+            val intent = Intent(applicationContext, MainActivity::class.java)
+            startActivity(intent)
+        } else {
+            var uChildEventListener =
+                    object : ValueEventListener {
+                        override fun onDataChange(userDataSnapshot: DataSnapshot) {
+                            userMap = userDataSnapshot.getValue() as MutableMap<String, Any>
+                            loginUserName = userMap!!.get("userName") as String
+                            cUserImageUrl = userMap!!.get("imageUrl") as String
+                            val headerView = nav_view.inflateHeaderView(R.layout.nav_header)
+                            navImageView = headerView.findViewById(R.id.navImageView)
+                            cUserName = headerView.findViewById(R.id.navUserName)
+                            cUserName!!.setText(loginUserName)
+
+                            Glide.with(navImageView)
+                                    .load(cUserImageUrl)
+                                    .into(navImageView)
+                        }
+
+                        override fun onCancelled(userDataSnapshot: DatabaseError) {
+
+                        }
+
+                    }
+            uDatabaseReference!!.child(userId!!).addListenerForSingleValueEvent(uChildEventListener)
+        }
     }
 }
