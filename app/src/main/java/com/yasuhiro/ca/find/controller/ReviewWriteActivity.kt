@@ -10,8 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.yasuhiro.ca.find.R
 import com.yasuhiro.ca.find.entity.Const
 import com.yasuhiro.ca.find.entity.Const.Companion.REVIEW_DBPATH
@@ -19,14 +18,18 @@ import com.yasuhiro.ca.find.entity.Const.Companion.REVIEW_DBPATH
 import kotlinx.android.synthetic.main.toolbar_backbutton.*
 
 class ReviewWriteActivity : AppCompatActivity(), View.OnClickListener {
-
+    // variables of Firebase
     private var mAuth: FirebaseAuth? = null
     private var mDatabase: FirebaseDatabase? = null
     private var mDatabaseReference: DatabaseReference? = null
+    private var uDatabaseReference: DatabaseReference? = null
 
+    // variables of widget
     private var inputReviewContent: EditText? = null
     private var returnButton: TextView? = null
     private var registButton: Button? = null
+
+    // variables of type
     private var userName: String? = null
     private var reviewContent: String? = null
     private var mProgressBar: ProgressDialog? = null
@@ -36,6 +39,7 @@ class ReviewWriteActivity : AppCompatActivity(), View.OnClickListener {
     private var address: String? = null
     private var imageUrl: String? = null
     private var uImageUrl: String? = null
+    private var userMap: MutableMap<String, Any>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +62,25 @@ class ReviewWriteActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
+    // currentUser
+    private fun currentUser() {
+        uDatabaseReference = FirebaseDatabase.getInstance().getReference(Const.USER_DBPATH)
+        val userId = mAuth!!.currentUser!!.uid
+        var uChildEventListener =
+        object : ValueEventListener {
+            override fun onDataChange(userDataSnapshot: DataSnapshot) {
+                userMap = userDataSnapshot.getValue() as MutableMap<String, Any>
+                userName = userMap!!.get("userName") as String
+                uImageUrl = userMap!!.get("imageUrl") as String
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+            }
+
+        }
+        uDatabaseReference!!.child(userId!!).addValueEventListener(uChildEventListener)
+    }
+
     // signUp function
     private fun signUp() {
         inputReviewContent = findViewById(R.id.inputReviewContent)
@@ -65,6 +88,8 @@ class ReviewWriteActivity : AppCompatActivity(), View.OnClickListener {
         mProgressBar = ProgressDialog(this)
 
         mAuth = FirebaseAuth.getInstance()
+
+        currentUser()
 
         mDatabase = FirebaseDatabase.getInstance()
         mDatabaseReference = mDatabase!!.reference.child(Const.PLACE_DBPATH).child(placeId!!)
