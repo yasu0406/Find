@@ -123,7 +123,7 @@ class RegistPlaceActivity : AppCompatActivity(), View.OnClickListener {
         var metadata = StorageMetadata.Builder().setContentType("image/jpeg").build()
         // Adding addOnSuccessListener to second StorageReference.
         mStorageReference!!.putFile(FilePathUri!!, metadata).addOnSuccessListener { taskSnapshot ->
-        mProgressBar!!.dismiss()
+//        mProgressBar!!.dismiss()
 
             // Showing toast message after done uploading.
             Toast.makeText(applicationContext, "Image Uploaded Successfully ", Toast.LENGTH_SHORT).show()
